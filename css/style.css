@@ -1,0 +1,469 @@
+﻿/* =============================
+   MAIN STYLESHEET FOR WEBGARD PLATFORM
+   Author: Webgard Team
+   Description: Core styles for the coming soon page
+   ============================= */
+
+
+/* =============================
+   FONT FACE DEFINITIONS
+   ============================= */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../fonts/PressStart2P.woff2") format("woff2"),
+       url("../fonts/PressStart2P.ttf") format("truetype");
+  font-display: swap;
+}
+
+
+/* =============================
+   ANIMATED BACKGROUND CANVAS
+   ============================= */
+#backgroundCanvas {
+  /* Positioning - Behind all content */
+  position: fixed;
+  top: var(--space-0);
+  left: var(--space-0);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  
+  /* Styling */
+  background-color: var(--color-background);
+  
+  /* Animation */
+  transition: var(--transition-background);
+}
+
+
+/* =============================
+   BODY & GLOBAL STYLES
+   ============================= */
+body {
+  /* Background */
+  background-color: var(--color-background);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Layout */
+  min-height: 100vh;
+  margin: var(--space-0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  /* Animation */
+  transition: var(--transition-filter);
+}
+
+
+/* =============================
+   THEME TOGGLE BUTTON
+   ============================= */
+#themeToggle {
+  /* Reset */
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  
+  /* Positioning */
+  position: absolute;
+  top: var(--position-theme-toggle-top);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--zindex-theme-toggle);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-theme-toggle-y) var(--padding-theme-toggle-x);
+  
+  /* Styling */
+  font-family: var(--font-body);
+  border-radius: var(--radius-full);
+  
+  /* Animation */
+  transition: var(--transition-color);
+}
+
+/* Theme toggle text (Dark | Light) */
+.theme-text {
+  /* Layout */
+  display: inline-block;
+  white-space: nowrap;
+  
+  /* Styling */
+  color: var(--color-text-primary);
+  font-size: var(--font-size-12);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-wide);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+.theme-text:hover {
+  color: var(--color-text-hover);
+  opacity: var(--opacity-full);
+  text-shadow: var(--shadow-text-hover);
+}
+
+
+/* =============================
+   BEAT INFORMATION
+   ============================= */
+#beatInfo {
+  /* Positioning - Below theme toggle at top of page */
+  position: fixed;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--zindex-theme-toggle);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-theme-toggle-y) var(--padding-theme-toggle-x);
+}
+
+#beatInfo a {
+  /* Reset */
+  text-decoration: none;
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  /* Styling */
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  opacity: var(--opacity-default);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+#beatInfo a:hover {
+  color: var(--color-text-hover);
+  opacity: var(--opacity-full);
+  text-shadow: var(--shadow-text-hover);
+}
+
+.beat-icon {
+  /* Styling */
+  font-size: 14px;
+  display: inline-block;
+  
+  /* Animation */
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.beat-text {
+  /* Styling */
+  display: inline-block;
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+}
+
+/* Desktop: Keep beat text inline on single line */
+.beat-title,
+.beat-producer,
+.beat-separator {
+  display: inline;
+}
+
+/* Pulse animation for beat icon */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+
+/* =============================
+   ENTRY BUTTON (Initial Screen)
+   ============================= */
+#entryButton {
+  /* Positioning */
+  position: absolute;
+  top: var(--space-0);
+  left: var(--space-0);
+  right: var(--space-0);
+  bottom: var(--space-0);
+  
+  /* Layout */
+  margin: var(--space-0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  /* Styling */
+  color: var(--color-text-primary);
+  font-size: var(--font-size-entry-button);
+  font-family: var(--font-body);
+  text-shadow: var(--shadow-text);
+  backdrop-filter: var(--blur-backdrop);
+  cursor: pointer;
+  
+  /* Animation */
+  transition: opacity var(--duration-slow) var(--timing-ease);
+}
+
+
+/* =============================
+   MAIN CONTENT SECTION
+   ============================= */
+#content {
+  /* Layout */
+  width: 100%;
+  max-width: var(--max-width-content);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-content);
+  text-align: center;
+  padding: var(--space-0) var(--padding-content);
+  box-sizing: border-box;
+}
+
+
+/* =============================
+   COMING SOON SECTION
+   ============================= */
+#comingSoon {
+  /* Layout */
+  text-align: center;
+  
+  /* Styling */
+  color: var(--color-text-primary);
+  font-size: var(--font-size-heading-section);
+  font-family: var(--font-heading);
+  text-shadow: var(--shadow-text);
+}
+
+#comingSoon h1 {
+  margin: var(--space-0);
+}
+
+
+/* =============================
+   SOCIAL MEDIA LINKS
+   ============================= */
+#social-links {
+  /* Positioning - Near footer with proper spacing */
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-social-links);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-1) var(--space-0);
+  
+  /* Styling */
+  font-family: var(--font-body);
+  font-size: var(--font-size-social-link);
+}
+
+#social-links a {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-social-link);
+  margin: var(--space-0) var(--margin-social-link);
+  
+  /* Styling */
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-social-link);
+  opacity: var(--opacity-default);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+#social-links a:hover {
+  color: var(--color-text-hover);
+  text-shadow: var(--shadow-text-hover);
+  opacity: var(--opacity-full);
+}
+
+#social-links svg {
+  /* Size */
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  
+  /* Layout */
+  margin: var(--space-0);
+  display: block;
+}
+
+
+/* =============================
+   FOOTER
+   ============================= */
+.footer {
+  /* Positioning */
+  position: absolute;
+  bottom: var(--position-footer-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Layout */
+  width: 100%;
+  text-align: center;
+  
+  /* Styling */
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-footer);
+  line-height: var(--line-height-normal);
+  opacity: var(--opacity-default);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+.footer p {
+  margin: var(--margin-footer-p) var(--space-0);
+}
+
+.footer:hover {
+  opacity: var(--opacity-full);
+}
+
+
+/* =============================
+   THEME TRANSITIONS
+   ============================= */
+body,
+#comingSoon,
+#social-links,
+#entryButton,
+#beatInfo {
+  transition: var(--transition-theme);
+}
+
+
+/* =============================
+   RESPONSIVE DESIGN - MOBILE
+   ============================= */
+@media (max-width: 600px) {
+  
+  /* Coming Soon Section */
+  #comingSoon {
+    font-size: var(--font-size-heading-section-mobile);
+    padding: var(--space-0) var(--padding-section-mobile);
+  }
+
+  #comingSoon h1 {
+    font-size: var(--font-size-heading-main);
+  }
+
+  /* Social Links */
+  #social-links {
+    bottom: 80px;
+    gap: var(--gap-social-links-mobile);
+    font-size: var(--font-size-social-link-mobile);
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-4) var(--space-0);
+  }
+
+  #social-links a {
+    gap: var(--gap-social-link-mobile);
+  }
+
+  /* Entry Button */
+  #entryButton {
+    font-size: var(--font-size-entry-button-mobile);
+    padding: var(--space-0) var(--padding-entry-mobile);
+  }
+
+  /* Content Section */
+  #content {
+    gap: var(--gap-content-mobile);
+    padding: var(--padding-content-top-mobile) var(--padding-content-mobile) var(--padding-content-bottom-mobile);
+  }
+
+  /* Body */
+  body {
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: var(--position-footer-bottom-mobile);
+    font-size: var(--font-size-footer-mobile);
+    line-height: var(--line-height-tight);
+  }
+
+  .footer p {
+    margin: var(--margin-footer-p-mobile) var(--space-0);
+  }
+
+  /* Beat Information */
+  #beatInfo {
+    top: 55px;
+    width: 100%;
+  }
+
+  #beatInfo a {
+    font-size: 8px;
+    gap: 6px;
+  }
+
+  .beat-icon {
+    font-size: 10px;
+  }
+
+  .beat-text {
+    max-width: 250px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .beat-title,
+  .beat-producer {
+    display: block;
+  }
+
+  .beat-separator {
+    display: none;
+  }
+
+}
+
+
+/* =============================
+   END OF STYLESHEET
+   ============================= */

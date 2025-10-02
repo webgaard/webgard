@@ -1,122 +1,92 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Webgard - AI-Powered Platform Coming Soon">
+  <meta name="keywords" content="webgard, ai, platform, coming soon">
+  <meta name="author" content="Webgard Team">
 
-  <title>Coming Soon</title>
+  <!-- Page Title -->
+  <title>Webgard - Coming Soon</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-  <style>
-    @font-face {
-      font-family: "Press Start 2P";
-      src: url("PressStart2P.woff2") format("woff2"),
-       url("PressStart2P.ttf") format("truetype");
-      font-display: swap;
-    }
-
-    body {
-      background-color: black;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: filter 0.5s;
-    }
-
-    #comingSoon {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 12px;
-      font-family: "Press Start 2P", sans-serif;
-      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-    }
-
-
-    #entryButton {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 23px;
-      font-family: "Press Start 2P", sans-serif;
-      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(10px);
-      cursor: pointer;
-    }
-
-    #content {
-      display: none;
-    }
-  </style>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+  <!-- Animated Background Canvas -->
+  <canvas id="backgroundCanvas"></canvas>
+
+  <!-- Main Container -->
   <div class="container">
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+      <span class="theme-text">Dark | Light</span>
+    </button>
+
+    <!-- Entry Button - Initial screen overlay -->
     <p id="entryButton" class="enter">Click To Enter</p>
+
   </div>
 
+  <!-- Main Content - Hidden until entry button is clicked -->
   <div id="content">
+
+    <!-- Beat Information -->
+    <div id="beatInfo">
+      <a href="https://youtu.be/h73k518jZzg?si=Yd5wlYKRImt0jEJ2" target="_blank" rel="noopener noreferrer"
+        aria-label="Beat information">
+        <span class="beat-icon">♫</span>
+        <span class="beat-text">
+          <span class="beat-title">BLOODY SCENE</span>
+          <span class="beat-separator"> - </span>
+          <span class="beat-producer">Prod By AndreOnBeat</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- Coming Soon Section -->
     <div id="comingSoon">
       <h1>COMING SOON</h1>
     </div>
-    <!-- audio player for bg music -->
+
+    <!-- Background Music Audio Player -->
     <audio id="audio" controls autoplay loop style="display: none">
-      <source src="skidee.xyz.mp3" type="audio/mp3" />
+      <source src="assets/BLOODY SCENE - Prod By AndreOnBeat.mp3" type="audio/mp3" />
       Your browser does not support the audio tag.
     </audio>
+
+    <!-- Social Media Links -->
+    <div id="social-links">
+      <a href="https://www.instagram.com/webgaard?igsh=MXM0ZnA1N3puYTNydQ==" target="_blank" rel="noopener noreferrer"
+        aria-label="Instagram">INSTAGRAM</a>
+      <a href="https://x.com/webgaard?s=09" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+      <a href="https://github.com/webgaard" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GITHUB</a>
+      <a href="https://t.me/az_webgard" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TELEGRAM</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>webgard @ 2025</p>
+      <p>AI-Powered</p>
+    </footer>
+
   </div>
 
-  <!-- js for interactions, animations -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/audio-visualization.js"></script>
 
-      var audio = document.getElementById("audio");
-
-      // func to hide the entry button and show content
-      function showContent() {
-        var entryButton = document.getElementById("entryButton");
-        var content = document.getElementById("content");
-
-        // hide entry button
-        entryButton.style.opacity = 0;
-        entryButton.style.pointerEvents = "none";
-
-        // Delay before hiding entry button and displaying content
-        setTimeout(function () {
-          entryButton.style.display = "none";
-          content.style.display = "block";
-
-          // bg music
-          audio.play();
-
-          document.body.style.overflow = "auto";
-        }, 500);
-      }
-
-      // entry button event listener 
-      document
-        .getElementById("entryButton")
-        .addEventListener("click", showContent);
-
-      // adding blur class to the body when the page loads
-      document.body.classList.add("blur");
-    });
-  </script>
 </body>
 
 </html>
