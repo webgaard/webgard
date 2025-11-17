@@ -114,6 +114,22 @@ body {
   text-shadow: var(--shadow-text-hover);
 }
 
+/* Theme labels inside toggle (DARK / LIGHT) */
+.theme-label {
+  color: var(--color-text-secondary);
+  opacity: var(--opacity-default);
+}
+
+.theme-label--active {
+  color: var(--color-text-primary);
+  opacity: var(--opacity-full);
+  text-shadow: var(--shadow-text-hover);
+}
+
+.theme-separator {
+  color: var(--color-text-secondary);
+}
+
 
 /* =============================
    BEAT INFORMATION
@@ -143,28 +159,20 @@ body {
   gap: 8px;
   
   /* Styling */
-  color: var(--color-text-secondary);
+  color: var(--color-red);
   font-family: var(--font-body);
-  font-size: var(--font-size-12);
-  opacity: var(--opacity-default);
+  font-size: var(--font-size-10);
+  opacity: var(--opacity-full);
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-red);
+  padding-bottom: 4px;
   
   /* Animation */
-  transition: var(--transition-color), var(--transition-opacity);
+  transition: border-bottom 0.3s ease;
 }
 
 #beatInfo a:hover {
-  color: var(--color-text-hover);
-  opacity: var(--opacity-full);
-  text-shadow: var(--shadow-text-hover);
-}
-
-.beat-icon {
-  /* Styling */
-  font-size: 14px;
-  display: inline-block;
-  
-  /* Animation */
-  animation: pulse 2s ease-in-out infinite;
+  border-bottom: 1px solid transparent;
 }
 
 .beat-text {
@@ -181,16 +189,64 @@ body {
   display: inline;
 }
 
-/* Pulse animation for beat icon */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+/* =============================
+   MUSIC CONTROL BUTTON
+   ============================= */
+#musicControl {
+  /* Positioning - Below beat information */
+  position: fixed;
+  top: 105px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--zindex-theme-toggle);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#musicToggle {
+  /* Reset */
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--padding-theme-toggle-y) var(--padding-theme-toggle-x);
+  
+  /* Styling */
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  opacity: var(--opacity-default);
+  border-radius: var(--radius-full);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+#musicToggle:hover {
+  color: var(--color-text-hover);
+  opacity: var(--opacity-full);
+  text-shadow: var(--shadow-text-hover);
+}
+
+#musicIcon {
+  /* Styling */
+  font-size: 12px;
+  display: inline-block;
+}
+
+#musicStatus {
+  /* Styling */
+  display: inline-block;
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
 }
 
 
@@ -232,7 +288,8 @@ body {
   /* Layout */
   width: 100%;
   max-width: var(--max-width-content);
-  display: none;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -244,10 +301,14 @@ body {
 
 
 /* =============================
-   COMING SOON SECTION
+   COMING SOON HEADING
    ============================= */
-#comingSoon {
-  /* Layout */
+#comingSoonHeading {
+  /* Layout - Centered on page */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   
   /* Styling */
@@ -257,8 +318,114 @@ body {
   text-shadow: var(--shadow-text);
 }
 
-#comingSoon h1 {
+#comingSoonHeading h1 {
   margin: var(--space-0);
+  white-space: nowrap;
+}
+
+
+/* =============================
+   PROJECTS SECTION
+   ============================= */
+#projects {
+  /* Layout - Desktop: horizontal flex with equal spacing */
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-15);
+  text-align: center;
+  padding: var(--space-0) var(--space-14);
+  box-sizing: border-box;
+  
+  /* Styling */
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+}
+
+/* Coming Soon Project Cards (Side labels for projects) */
+.coming-soon-project {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-1);
+  flex: 1;
+  max-width: 200px;
+  
+  /* Styling */
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  opacity: var(--opacity-default);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+.coming-soon-project:hover {
+  color: var(--color-text-hover);
+  opacity: var(--opacity-full);
+  text-shadow: var(--shadow-text-hover);
+}
+
+/* Project Logo Images - Base Styles (Shared Properties) */
+.project-logo {
+  /* Layout */
+  display: block;
+  height: auto;
+  
+  /* Styling */
+  opacity: var(--opacity-logo);
+  filter: var(--filter-logo);
+  
+  /* Animation */
+  transition: var(--transition-logo);
+}
+
+/* AZ Arch Logo - Desktop Specific Styles */
+.azarch-logo {
+  /* Size - Customizable for AZ Arch */
+  width: var(--size-logo-azarch);
+  
+  /* Spacing - Customizable for AZ Arch */
+  margin-top: var(--space-4);
+}
+
+/* AZ 10 Logo - Desktop Specific Styles */
+.az10-logo {
+  /* Size - Customizable for AZ 10 */
+  width: var(--size-logo-az10);
+  
+  /* Spacing - Customizable for AZ 10 */
+  margin-top: var(--space-4);
+}
+
+/* Hover Effects for All Logos */
+.coming-soon-project:hover .project-logo {
+  opacity: var(--opacity-full);
+  filter: var(--filter-logo-hover);
+}
+
+/* Coming Soon Label - Top text (AZ ARCH / AZ 10) */
+.coming-soon-label {
+  /* Styling */
+  font-size: var(--font-size-project-label);
+  font-weight: bold;
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Coming Soon Description - Bottom text (ARCHITECTURE / MUSIC) */
+.coming-soon-description {
+  /* Styling */
+  font-size: var(--font-size-project-description);
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0.8;
 }
 
 
@@ -275,9 +442,8 @@ body {
   
   /* Layout */
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--gap-social-links);
+  flex-direction: column;
+  gap: var(--space-4);
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -288,7 +454,33 @@ body {
   font-size: var(--font-size-social-link);
 }
 
-#social-links a {
+/* Social Heading - "Stay in Touch" */
+.social-heading {
+  /* Styling */
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-12);
+  letter-spacing: var(--letter-spacing-wide);
+  margin: var(--space-0) var(--space-0) var(--space-6) var(--space-0);
+  opacity: var(--opacity-full);
+  
+  /* Animation */
+  transition: var(--transition-color), var(--transition-opacity);
+}
+
+/* Social Links Container */
+.social-links-container {
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-social-links);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.social-links-container a {
   /* Layout */
   display: flex;
   flex-direction: column;
@@ -306,7 +498,7 @@ body {
   transition: var(--transition-color), var(--transition-opacity);
 }
 
-#social-links a:hover {
+.social-links-container a:hover {
   color: var(--color-text-hover);
   text-shadow: var(--shadow-text-hover);
   opacity: var(--opacity-full);
@@ -361,10 +553,12 @@ body {
    THEME TRANSITIONS
    ============================= */
 body,
-#comingSoon,
+#comingSoonHeading,
+#projects,
 #social-links,
 #entryButton,
-#beatInfo {
+#beatInfo,
+#musicControl {
   transition: var(--transition-theme);
 }
 
@@ -374,28 +568,86 @@ body,
    ============================= */
 @media (max-width: 600px) {
   
-  /* Coming Soon Section */
-  #comingSoon {
+  /* Coming Soon Heading */
+  #comingSoonHeading {
     font-size: var(--font-size-heading-section-mobile);
-    padding: var(--space-0) var(--padding-section-mobile);
   }
 
-  #comingSoon h1 {
+  #comingSoonHeading h1 {
     font-size: var(--font-size-heading-main);
+  }
+
+  /* Projects Section */
+  #projects {
+    /* Mobile: horizontal layout like desktop */
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-10);
+    padding: var(--space-0) var(--padding-section-mobile);
+    max-width: 100%;
+  }
+
+  /* Coming Soon Project Cards - Mobile */
+  .coming-soon-project {
+    gap: var(--space-1);
+    max-width: 150px;
+  }
+
+  /* AZ Arch Logo - Mobile Specific Styles */
+  .azarch-logo {
+    /* Size - Customizable for AZ Arch on Mobile */
+    width: var(--size-logo-azarch-mobile);
+    
+    /* Spacing - Customizable for AZ Arch on Mobile */
+    margin-top: var(--space-2);
+  }
+
+  /* AZ 10 Logo - Mobile Specific Styles */
+  .az10-logo {
+    /* Size - Customizable for AZ 10 on Mobile */
+    width: var(--size-logo-az10-mobile);
+    
+    /* Spacing - Customizable for AZ 10 on Mobile */
+    margin-top: var(--space-4);
+  }
+
+  .coming-soon-label {
+    font-size: var(--font-size-project-label-mobile);
+  }
+
+  .coming-soon-description {
+    font-size: var(--font-size-project-description-mobile);
   }
 
   /* Social Links */
   #social-links {
     bottom: 80px;
-    gap: var(--gap-social-links-mobile);
+    gap: var(--space-4);
     font-size: var(--font-size-social-link-mobile);
-    flex-direction: column;
-    align-items: center;
     padding: var(--space-4) var(--space-0);
   }
 
-  #social-links a {
+  /* Social Heading - Mobile */
+  .social-heading {
+    font-size: var(--font-size-10);
+    margin-bottom: var(--space-8);
+  }
+
+  /* Social Links Container - Mobile 2x2 Grid */
+  .social-links-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-8) var(--space-10);
+    width: 100%;
+    max-width: 300px;
+    justify-items: center;
+  }
+
+  .social-links-container a {
     gap: var(--gap-social-link-mobile);
+    width: 100%;
+    justify-self: center;
   }
 
   /* Entry Button */
@@ -459,6 +711,21 @@ body,
 
   .beat-separator {
     display: none;
+  }
+
+  /* Music Control */
+  #musicControl {
+    top: 90px;
+  }
+
+  #musicToggle {
+    font-size: 8px;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  #musicIcon {
+    font-size: 10px;
   }
 
 }

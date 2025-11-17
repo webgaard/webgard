@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Webgard - AI-Powered Platform Coming Soon">
   <meta name="keywords" content="webgard, ai, platform, coming soon">
-  <meta name="author" content="Webgard Team">
+  <meta name="author" content="Webgard">
 
   <!-- Page Title -->
   <title>Webgard - Coming Soon</title>
@@ -45,22 +45,22 @@
 
     <!-- Theme Toggle Button -->
     <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-      <span class="theme-text">Dark | Light</span>
+      <span class="theme-text">
+        <span class="theme-label theme-label-dark" data-theme-label="dark">Dark</span>
+        <span class="theme-separator"> | </span>
+        <span class="theme-label theme-label-light" data-theme-label="light">Light</span>
+      </span>
     </button>
-
-    <!-- Entry Button - Initial screen overlay -->
-    <p id="entryButton" class="enter">Click To Enter</p>
 
   </div>
 
-  <!-- Main Content - Hidden until entry button is clicked -->
+  <!-- Main Content -->
   <div id="content">
 
     <!-- Beat Information -->
     <div id="beatInfo">
       <a href="https://youtu.be/h73k518jZzg?si=Yd5wlYKRImt0jEJ2" target="_blank" rel="noopener noreferrer"
         aria-label="Beat information">
-        <span class="beat-icon">♫</span>
         <span class="beat-text">
           <span class="beat-title">BLOODY SCENE</span>
           <span class="beat-separator"> - </span>
@@ -69,24 +69,49 @@
       </a>
     </div>
 
-    <!-- Coming Soon Section -->
-    <div id="comingSoon">
+    <!-- Music Control Button -->
+    <div id="musicControl">
+      <button id="musicToggle" aria-label="Play/Pause music" title="Play/Pause music">
+        <span id="musicIcon">▶</span>
+        <span id="musicStatus">PLAY MUSIC</span>
+      </button>
+    </div>
+
+    <!-- Coming Soon Heading -->
+    <div id="comingSoonHeading">
       <h1>COMING SOON</h1>
     </div>
 
+    <!-- Projects Section -->
+    <div id="projects">
+      <div class="coming-soon-project">
+        <div class="coming-soon-label">AZ ARCH</div>
+        <div class="coming-soon-description">ARCHITECTURE</div>
+        <img src="assets/AZArch-Logo.svg" alt="AZ Arch Logo" class="project-logo azarch-logo">
+      </div>
+      <div class="coming-soon-project">
+        <div class="coming-soon-label">AZ 10</div>
+        <div class="coming-soon-description">MUSIC</div>
+        <img src="assets/AZ10-Logo.svg" alt="AZ 10 Logo" class="project-logo az10-logo">
+      </div>
+    </div>
+
     <!-- Background Music Audio Player -->
-    <audio id="audio" controls autoplay loop style="display: none">
+    <audio id="audio" loop style="display: none">
       <source src="assets/BLOODY SCENE - Prod By AndreOnBeat.mp3" type="audio/mp3" />
       Your browser does not support the audio tag.
     </audio>
 
     <!-- Social Media Links -->
     <div id="social-links">
-      <a href="https://www.instagram.com/webgaard?igsh=MXM0ZnA1N3puYTNydQ==" target="_blank" rel="noopener noreferrer"
-        aria-label="Instagram">INSTAGRAM</a>
-      <a href="https://x.com/webgaard?s=09" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
-      <a href="https://github.com/webgaard" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GITHUB</a>
-      <a href="https://t.me/az_webgard" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TELEGRAM</a>
+      <h2 class="social-heading">Stay in Touch</h2>
+      <div class="social-links-container">
+        <a href="https://www.instagram.com/webgaard?igsh=MXM0ZnA1N3puYTNydQ==" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram">Instagram</a>
+        <a href="https://t.me/w3bgardi" target="_blank" rel="noopener noreferrer" aria-label="Telegram">Telegram</a>
+        <a href="https://x.com/webgaard?s=09" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+        <a href="https://github.com/webgaard" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+      </div>
     </div>
 
     <!-- Footer -->

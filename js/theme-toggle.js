@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Get DOM element references
   const themeToggleButton = document.getElementById('themeToggle');
-  const themeDot = document.getElementById('themeDot');
+  const darkLabel = document.querySelector('[data-theme-label="dark"]');
+  const lightLabel = document.querySelector('[data-theme-label="light"]');
   const root = document.documentElement;
 
   // Read initial theme from localStorage, default to 'dark' if not set
@@ -24,17 +25,38 @@ document.addEventListener('DOMContentLoaded', function () {
    * @param {string} theme - The theme to apply ('dark' or 'light')
    */
   function applyTheme(theme) {
-    
+
     if (theme === 'dark') {
       // Apply dark theme
       root.setAttribute('data-theme', 'dark');
-      themeDot.style.color = '#fff'; // White dot for dark mode indicator
+
+      // Update active label styles
+      if (darkLabel && lightLabel) {
+        darkLabel.classList.add('theme-label--active');
+        lightLabel.classList.remove('theme-label--active');
+      }
+
+      // Update accessible label
+      if (themeToggleButton) {
+        themeToggleButton.setAttribute('aria-label', 'Switch to light theme');
+        themeToggleButton.setAttribute('data-current-theme', 'dark');
+      }
     } else {
       // Apply light theme (default)
       root.setAttribute('data-theme', 'light');
-      themeDot.style.color = '#222'; // Dark dot for light mode indicator
+
+      // Update active label styles
+      if (darkLabel && lightLabel) {
+        lightLabel.classList.add('theme-label--active');
+        darkLabel.classList.remove('theme-label--active');
+      }
+
+      // Update accessible label
+      if (themeToggleButton) {
+        themeToggleButton.setAttribute('aria-label', 'Switch to dark theme');
+        themeToggleButton.setAttribute('data-current-theme', 'light');
+      }
     }
-    
   }
 
 

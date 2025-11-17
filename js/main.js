@@ -1,69 +1,63 @@
 ﻿/* =============================
    MAIN JAVASCRIPT FOR WEBGARD PLATFORM
    Author: Webgard Team
-   Description: Handles entry animation and audio playback
+   Description: Handles entry animation and audio playback control
    ============================= */
 
 
 /**
  * Initialize the page on DOM content loaded
+ * Sets up music control button and main content visibility
  */
 document.addEventListener("DOMContentLoaded", function () {
 
   // Get audio element reference
   const audio = document.getElementById("audio");
 
-  // Get DOM element references
-  const entryButton = document.getElementById("entryButton");
+  // Get main content reference
   const content = document.getElementById("content");
 
+  // Get music control elements
+  const musicToggle = document.getElementById("musicToggle");
+  const musicIcon = document.getElementById("musicIcon");
+  const musicStatus = document.getElementById("musicStatus");
 
-  /**
-   * Show main content and hide entry button
-   * This function handles the transition from the landing screen
-   * to the main content area with smooth animation
-   */
-  function showContent() {
-    
-    // Fade out entry button
-    entryButton.style.opacity = 0;
-    entryButton.style.pointerEvents = "none";
+  // Track music playing state
+  let isPlaying = false;
 
-    // Delay to allow fade-out animation to complete
-    setTimeout(function () {
-      
-      // Hide entry button completely
-      entryButton.style.display = "none";
-      
-      // Display main content
-      content.style.display = "flex";
-
-      // Start background music playback
-      audio.play().catch(function(error) {
-        // Handle autoplay restrictions in some browsers
-        console.log("Audio autoplay prevented:", error);
-      });
-
-      // Lock body overflow to prevent scrolling
-      document.body.style.overflow = "hidden";
-
-    }, 500); // 500ms delay for smooth transition
+  // Ensure main content is visible
+  if (content) {
+    content.style.display = "flex";
   }
 
-
   /**
-   * Entry button click event listener
-   * Triggers the content reveal animation
+   * Toggle music playback
+   * Updates button state and icon based on playing status
    */
-  entryButton.addEventListener("click", showContent);
+  function toggleMusic() {
+    if (!audio) return;
 
+    if (isPlaying) {
+      // Pause music
+      audio.pause();
+      musicIcon.textContent = "▶";
+      musicStatus.textContent = "PLAY MUSIC";
+      isPlaying = false;
+    } else {
+      // Play music
+      audio.play().catch((error) => {
+        console.log("Audio playback failed:", error);
+      });
+      musicIcon.textContent = "❚❚";
+      musicStatus.textContent = "PAUSE MUSIC";
+      isPlaying = true;
+    }
+  }
 
-  /**
-   * Add blur class to body on page load
-   * Creates the initial blurred background effect
-   */
-  document.body.classList.add("blur");
-
+  // Attach click event to music toggle button
+  if (musicToggle) {
+    musicToggle.addEventListener("click", toggleMusic);
+  }
 });
 
 
