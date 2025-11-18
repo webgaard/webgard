@@ -135,11 +135,11 @@ body {
    BEAT INFORMATION
    ============================= */
 #beatInfo {
-  /* Positioning - Below theme toggle at top of page */
-  position: fixed;
-  top: 65px;
+  /* Positioning - Absolute positioning above coming soon */
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, calc(-50% - 270px));
   z-index: var(--zindex-theme-toggle);
   
   /* Layout */
@@ -193,11 +193,11 @@ body {
    MUSIC CONTROL BUTTON
    ============================= */
 #musicControl {
-  /* Positioning - Below beat information */
-  position: fixed;
-  top: 105px;
+  /* Positioning - Absolute positioning above coming soon */
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, calc(-50% - 220px));
   z-index: var(--zindex-theme-toggle);
   
   /* Layout */
@@ -247,37 +247,6 @@ body {
   display: inline-block;
   letter-spacing: var(--letter-spacing-wide);
   white-space: nowrap;
-}
-
-
-/* =============================
-   ENTRY BUTTON (Initial Screen)
-   ============================= */
-#entryButton {
-  /* Positioning */
-  position: absolute;
-  top: var(--space-0);
-  left: var(--space-0);
-  right: var(--space-0);
-  bottom: var(--space-0);
-  
-  /* Layout */
-  margin: var(--space-0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  
-  /* Styling */
-  color: var(--color-text-primary);
-  font-size: var(--font-size-entry-button);
-  font-family: var(--font-body);
-  text-shadow: var(--shadow-text);
-  backdrop-filter: var(--blur-backdrop);
-  cursor: pointer;
-  
-  /* Animation */
-  transition: opacity var(--duration-slow) var(--timing-ease);
 }
 
 
@@ -426,6 +395,7 @@ body {
   white-space: nowrap;
   text-align: center;
   opacity: 0.8;
+  margin-top: var(--space-1);
 }
 
 
@@ -633,15 +603,24 @@ body,
     margin-bottom: var(--space-8);
   }
 
-  /* Social Links Container - Mobile 2x2 Grid */
+  /* Social Links Container - Mobile: 3 links in first row, 2 in second row */
   .social-links-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto;
     gap: var(--space-8) var(--space-10);
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
     justify-items: center;
+  }
+  
+  /* Last two links span center columns (2nd row centered) */
+  .social-links-container a:nth-child(4) {
+    grid-column: 1 / 2;
+  }
+  
+  .social-links-container a:nth-child(5) {
+    grid-column: 3 / 4;
   }
 
   .social-links-container a {
@@ -682,8 +661,8 @@ body,
 
   /* Beat Information */
   #beatInfo {
-    top: 55px;
     width: 100%;
+    transform: translate(-50%, calc(-50% - 220px));
   }
 
   #beatInfo a {
@@ -715,7 +694,7 @@ body,
 
   /* Music Control */
   #musicControl {
-    top: 90px;
+    transform: translate(-50%, calc(-50% - 170px));
   }
 
   #musicToggle {
